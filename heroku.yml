@@ -1,32 +1,6 @@
-version: "3"
-services:
-    db:
-        container_name: tweeter-db
-        image: postgres: latest
-        restart: always
-        ports:
-            - "27017:27017"
-        volumes:
-            - /data/db
-    api:
-        container_name: isp-api
-        build: ./server
-        restart: always
-        depends_on:
-            - db
-        ports:
-            - "3000:3000"
-        environment: 
-            - API_PORT=3333
-            - POSTGRES_USER=docker
-            - POSTGRES_PASSWORD=docker
-            -POSTGRES_DB=tweetr
-            - CORS=*
-    frontend:
-        container_name: tweeter-front
-        build: ./client
-        restart: always
-        depends_on:
-            - db
-        ports:
-            - "8080:80"
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: bundle exec puma -C config/puma.rb
+
