@@ -15,6 +15,7 @@ import FavoriteTweets from '@/components/User/Profile/FavoriteTweets'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
